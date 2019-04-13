@@ -10,16 +10,16 @@
 * Use Less-Than-or-Equal-To Comparison `<=`
 * Invert Truth Value with "Bang" (`!`)
 * Invert Truth Value with "Double-Bang" (`!`)
-* Identify Truthy and Falsey Values in Ruby
+* Identify Truthy and Falsey Values in Python
 * Join Boolean Expressions with AND
 * Join Boolean Expressions with OR
 
 ## Introduction
 
 As we saw in the ternary expression, sometimes we need to get a Boolean value
-(`true` or `false`) _from_ an expression in order to use it _in_ another
-expression.  We showed that we can use  greater than (`>`) and less than (`<`)
-to perform comparisons that produce `true` or `false`. Let's learn more!
+(`True` or `False`) _from_ an expression in order to use it _in_ another
+expression.  We showed that we can use greater than (`>`) and less than (`<`)
+to perform comparisons that produce `True` or `False`. Let's learn more!
 
 ## Arithmetic Comparisons
 
@@ -27,44 +27,44 @@ to perform comparisons that produce `true` or `false`. Let's learn more!
 
 To check whether two values are equal, we use the *equality operator* represented
 with `==` ("double-equal-sign"). If two values are equal, then the statement
-will return `true`. If they are not equal, then it will return `false`. For
+will return `True`. If they are not equal, then it will return `False`. For
 example:
 
-```ruby
-1 == 1 #=> true
+```Python
+1 == 1 #=> True
 
-1 == 7 #=> false
+1 == 7 #=> False
 ```
 
-**IMPORTANT**: The comparison operator* `==` *is distinct from the assignment
-operator* `=` *that is used to set a variable equal to a value. Mistaking these
-for each other is a common cause of unexpected behavior.
+**IMPORTANT**: *The comparison operator* `==` *is distinct from the assignment
+operator*, `=`, *that is used to set a variable equal to a value. Mistaking these
+for each other is a common cause of unexpected behavior.*
 
 Now, this might feel a bit weird, because you're used to thinking about `=` only
-being around numbers like `Integer` and `Float`. But you can also compare `String`s:
+being around numbers like `Integer` and `Float`. But you can also compare
+`String`s:
 
-```ruby
-"Razz" == "Matazz" #=> false
+```Python
+"Razz" == "Matazz" #=> False
 
-"Poodle" == "Poodle" #=> true
+"Poodle" == "Poodle" #=> True
 
-"Poodle" == "poodle" #=> false
+"Poodle" == "poodle" #=> False
 ```
-
 
 ### Use Inequality Comparison
 
 To check whether two values **are not** equal, we use the *inequality operator*
 represented with `!=` ("bang-equal-sign;" more on "bang" below). If two values
-are not equal, then the statement will return `true`. If they are equal, then
-it will return `false`. For example:
+are not equal, then the statement will return `True`. If they are equal, then
+it will return `False`. For example:
 
-```ruby
-1 != 1 #=> false
+```Python
+1 != 1 #=> False
 
-1 != 7 #=> true
+1 != 7 #=> True
 
-"Poodle" != "Lord of the Manor" #=> true
+"Poodle" != "Lord of the Manor" #=> True
 ```
 
 ## Quantity Comparisons
@@ -75,117 +75,110 @@ greater-than-or-equal-to.
 ### Use Greater-Than Comparison `>`
 
 If the value on the left of the operator is *greater than* the value on the
-right, then the evaluation is `true`; `false` otherwise.
+right, then the evaluation is `True`; `False` otherwise.
 
 ### Use Less-Than Comparison `<`
 
 If the value on the left of the operator is *less than* the value on the
-right, then the evaluation is `true`; `false` otherwise.
+right, then the evaluation is `True`; `False` otherwise.
 
 ### Use Greater-Than-or-Equal-To Comparison `>=`
 
 If the value on the left of the operator is *greater than or equal to* the
-value on the right, then the evaluation is `true`; `false` otherwise.
+value on the right, then the evaluation is `True`; `False` otherwise.
 
 ### Use Less-Than-or-Equal-To Comparison `<=`
 
 If the value on the left of the operator is *less than or equal to* the
-value on the right, then the evaluation is `true`; `false` otherwise.
+value on the right, then the evaluation is `True`; `False` otherwise.
 
-## Invert Truth Value with "Bang" (`!`)
+## Invert Truth Value with `not`
 
-The `!` operator inverts a truth value. Here's the most simple version:
+The `not` keyword inverts a truth value. Here's the most simple version:
 
-```ruby
-!true #=> false
-!false #=> true
+```Python
+not True #=> False
+not False #=> True
 ```
 
 We can also invert the truth value of an expression:
 
-```ruby
-( 1 + 1 == 2 ) #=> true
-!( 1 + 1 == 2 ) #=> false
+```Python
+( 1 + 1 == 2 ) #=> True
+not ( 1 + 1 == 2 ) #=> False
 ```
 
-Since `1 + 1` evaluates to `2`; and since `2 == 2` the return value is `true`.
+Since `1 + 1` evaluates to `2`; and since `2 == 2` the return value is `True`.
 
-## Invert Truth Value with "Double-Bang" (`!!`)
+## Invert Truth Value Twice with `not not`
 
-The `!!` operator inverts a truth value. Here's the most simple version:
+Using `not not` inverts a truth value _twice_. Here's the most simple version:
 
-```ruby
-!!true #=> true
-!!false #=> false
+```Python
+not not True #=> True
+not not False #=> False
 ```
 
-We can also invert the truth value of an expression:
+We can also do this to an expression:
 
-```ruby
-!!( 1 + 1 == 2 ) #=> true
+```Python
+not not ( 1 + 1 == 2 ) #=> True
 ```
 
-Now why would this ever be useful? Great question. It turns out Ruby will treat
-a whole bunch of values as `true` that aren't the literal `true`. We call those
+Now why would this ever be useful? Great question. It turns out Python will treat
+a whole bunch of values as `True` that aren't the literal `True`. We call those
 values "truthy." Similarly, there are values that, even if they aren't the
-literal `false`, Ruby treats as false. We call those values "falsey."
+literal `False`, Python treats as false. We call those values "falsey."
 
 This next statement is very important:
 
-> **IMPORTANT**: Ruby will treat anything that is `false` or `nil` as falsey
+> **IMPORTANT**: Python will treat anything that is `False`, `0` or `None` as
+falsey
 
 So:
 
-```ruby
-false ? true : false  #=> false
-nil   ? true : false  #=> false
-6.7   ? true : false  #=> true
-1 + 1 ? true : false  #=> true
-:i_once_saw_a_poodle_play_racquetball ? true  : false  #=> true
+```Python
+True if False else False  #=> False
+True if 0 else False  #=> False
+True if None else False  #=> False
+True if 6.7 else False  #=> True
+True if 1 + 1 else False  #=> True
+True if "hello" else False #=> True
 ```
 
 In each of the examples above, we wanted to return whether the `truthy` or
-`falsey` value was a real-deal `true` or `false`. What a lot of code to type.
-But here's where our friend the double-bang operator comes in.
+`falsey` value was a real-deal `True` or `False`. What a lot of code to type.
+But here's where our friend `not not` comes in:
 
-```ruby
-!!false #=> false
-!!nil   #=> false
-!!6.7   #=> true
-!!1 + 1 #=> true
-!!:i_once_saw_a_poodle_play_racquetball #=> true
+```Python
+not not False #=> False
+not not 0   #=> False
+not not None #=> False
+not not 6.7   #=> True
+not not 1 + 1 #=> True
+not not "hello" #=> True
 ```
 
-Programmers often use double-bang to show other programmers "Hey, I'm being
-clever here and am using a truthy (or falsey) value.
+Programmers often use `not not` to show other programmers "Hey, I'm being clever
+here and am using a truthy (or falsey) value.
 
-> **What's with Bang?** Programmers, being lazy people, thought that
-> "exclamation point" was too long to say, so it became "bang." From this, many
-> of the punctuation marks, since they're often used in code or systems
-> administration, got cute nicknames. The `@` became "at" mostly to distinguish
-> it from "ampersand" (`&`) which is often called "and." The octothorpe became
-> called "hash" or "pound" (`#`) and thus the "hash-tag" of the social media
-> era is a tag after, well, "hash." "Splat" or "star" are common for `*` and
-> we've heard `$` called "bling." "Caret" (`^`) and "percent" (`%`) don't seem
-> to have clever names.
-
-## Identify Truthy and Falsey Values in Ruby
+## Identify Truthy and Falsey Values in Python
 
 This concept is ***so*** important we're going to repeat it again here:
 
-> **IMPORTANT**: Ruby will treat anything that is `false` or `nil` as falsey
+> **IMPORTANT**: Python will treat anything that is `False`, `0` or `None` as
+falsey
 
 ## Join Boolean Expressions with AND
 
-In Ruby `&&` ("double-ampersand") represents "AND." For an `&&` ("and") to
-evaluate to `true`, both values of either side of the symbol must evaluate to
-`true`. For example:
+In Python `and` is used to join two Boolean expressions, returning `True` or
+`False`. For an `and` to evaluate to `True`, both values of either side of `and`
+must evaluate to `True`. For example:
 
+```Python
+True and True #=> True
 
-```ruby
-true && true #=> true
-
-true && false #=> false
+True and False #=> False
 ```
 
 It's common to say things like:
@@ -193,41 +186,44 @@ It's common to say things like:
 IF it's Thursday AND my Mom is not home THEN I will play scary video games all
 night on the living room TV.
 
-In Ruby we would express this "double-conditional" like so.
+In Python we would express this "double-conditional" like so.
 
-```ruby
+```Python
+day_is_thursday = True
+mom_is_not_home = True
+
 # Ternary
-# Position 1                         # Position 2               # Position 3
-day_is_thursday && mom_is_not_home ? "play scary video games" : "do homework"
+# Position 1                # Position 2                             # Position 3
+"play scary video games" if day_is_thursday and mom_is_not_home else "do homework"
 ```
 
 ## Join Boolean Expressions with OR
 
-In Ruby `||` ("double-pipe") represents "OR." For an `||` ("or") to evaluate to
-`true`, only one value on either side of the symbol must evaluate to `true`.
-For example:
+In Python `or` is also used to join two Boolean expressions. For an `or` to
+evaluate to `True`, only one value on either side of `or` must evaluate to
+`True`. For example:
 
-```ruby
-false || true #=> true
+```Python
+False or True #=> True
 ```
 
 Of course, keep in mind, these Boolean values can, themselves, be Boolean
-expressions!  Instead of `false && true` it could another expression that
-results in `true` or `false` like `(poodle_count > 12) && (owner == "Lorlei
+expressions!  Instead of `False and True` it could be another expression that
+results in `True` or `False` like `(poodle_count > 12) and (owner == "Lorlei
 Gilmore")`
 
 ## Longer Expressions
 
-Because of the ability to use `()` and `AND` and `OR`, we can create
+Because of the ability to use `()` and `and` and `or`, we can create
 surprisingly rich programs:
 
-```ruby
+```Python
 chance_of_precipitation = 1000
 temperature = -1000
 it_is_wet = ( chance_of_precipitation > 0.5 )
 it_is_cold = ( temperature <= 5 )
-it_is_wet && it_is_cold ? "snow-suit" : "something less bulky" #=> "snow-suit"
-it_is_wet && !it_is_cold ? "umbrella" : "light fabric"
+"snow-suit" if it_is_wet and it_is_cold else "something less bulky" #=> "snow-suit"
+"umbrella" if it_is_wet and not it_is_cold else "light fabric" #=> "light fabric"
 ```
 
 Try changing some of the values or expressions to make sure you understand how
@@ -235,15 +231,15 @@ to _express_ your ideas using variables and Boolean conjunctions!
 
 ## Conclusion
 
-While it might seem strange that these simple little conditional expressions are so tiny,
-stacked together, they can have a big impact!
+While it might seem strange that these simple little conditional expressions are
+so tiny, stacked together, they can have a big impact!
 
 Most social media sites have a bit of conditional logic **just like this one**.
 
-```ruby
-top_corner_image = (user_logged_in && profile_pic_uploaded) ? retrieve_profile_pic : default_avatar
+```Python
+top_corner_image = retrieve_profile_pic if (user_logged_in and profile_pic_uploaded) else default_avatar
 ```
 
 With this collection of comparison operators you're able to express a
-surprisingly complex series of desires to Ruby! Your programming conversational
+surprisingly complex series of desires to Python! Your programming conversational
 level is nearing the pre-teen stage!
